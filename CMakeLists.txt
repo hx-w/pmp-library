@@ -23,15 +23,18 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR})
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 if(PMP_BUILD_VIS)
-  set(GLFW_SOURCE_DIR "external/glfw-3.3.8")
-  set(GLEW_SOURCE_DIR "external/glew-2.2.0")
-  set(IMGUI_SOURCE_DIR "external/imgui-1.89.8")
-  set(STB_IMAGE_SOURCE_DIR "external/stb_image-2.28")
-  set(STB_IMAGE_WRITE_SOURCE_DIR "external/stb_image_write-1.16")
+  set(GLFW_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/external/glfw-3.3.8")
+  set(GLEW_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/external/glew-2.2.0")
+  set(IMGUI_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/external/imgui-1.89.8")
+  set(STB_IMAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/external/stb_image-2.28")
+  set(STB_IMAGE_WRITE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/external/stb_image_write-1.16")
 
   add_subdirectory(${STB_IMAGE_WRITE_SOURCE_DIR})
   add_subdirectory(${STB_IMAGE_SOURCE_DIR})
 
+  include_directories(${STB_IMAGE_SOURCE_DIR})
+  include_directories(${STB_IMAGE_WRITE_SOURCE_DIR})
+  
   # Building only the GLFW lib
   set(BUILD_SHARED_LIBS
       OFF
